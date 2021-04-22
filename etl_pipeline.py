@@ -79,9 +79,11 @@ def parse_method(string_input):
     """This method translates a single line of comma separated values to a dictionary which can be loaded into BigQuery.
 
     Args:
-    string_input: A comma separated list of values in the form: 'Trip_Id, Trip__Duration, Start_Station_Id, Start_Time, Start_Station_Name, End_Station_Id, End_Time, End_Station_Name, Bike_Id, User_Type'
+    string_input: A comma separated list of values in the form: 'Trip_Id, Trip__Duration, Start_Station_Id, 
+    Start_Time, Start_Station_Name, End_Station_Id, End_Time, End_Station_Name, Bike_Id, User_Type'
 
-    Example string_input: '10000083,720,7239,2020-03-10 13:28:00,Bloor St W / Manning Ave - SMART,7160,10/03/2020 13:40,King St W / Tecumseth St,5563,Annual Member'
+    Example string_input: '10000083,720,7239,2020-03-10 13:28:00,Bloor St W / Manning Ave - SMART,7160,
+    10/03/2020 13:40,King St W / Tecumseth St,5563,Annual Member'
 
     Returns:
     A dict mapping BigQuery column names as keys to the corresponding value parsed from string_input.
