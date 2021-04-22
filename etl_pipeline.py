@@ -66,27 +66,33 @@ def format_datetime_bq(element):
     ref = element.find('/20')
     start = element[:ref].rfind(',')+1
     end = ref+element[ref:].find(',')
-    element = element[:start]+dt.strftime(dt.strptime(element[start:end], '%m/%d/%Y %H:%M'), '%Y-%m-%d %H:%M:%S')+element[end:]
+    element = element[:start]+dt.strftime(dt.strptime(element[start:end], '%m/%d/%Y %H:%M'),
+                                          '%Y-%m-%d %H:%M:%S')+element[end:]
 
     rref = element.rfind('/20')
     start = element[:rref].rfind(',')+1
     end = rref+element[rref:].find(',')
-    element = element[:start]+dt.strftime(dt.strptime(element[start:end],'%m/%d/%Y %H:%M'),'%Y-%m-%d %H:%M:%S')+element[end:]
+    element = element[:start]+dt.strftime(dt.strptime(element[start:end],'%m/%d/%Y %H:%M'),
+                                          '%Y-%m-%d %H:%M:%S')+element[end:]
 
     return element
 
 def parse_method(string_input):
-    """This method translates a single line of comma separated values to a dictionary which can be loaded into BigQuery.
+    """This method translates a single line of comma separated values to a dictionary 
+    which can be loaded into BigQuery.
 
     Args:
-    string_input: A comma separated list of values in the form: 'Trip_Id, Trip__Duration, Start_Station_Id, 
-    Start_Time, Start_Station_Name, End_Station_Id, End_Time, End_Station_Name, Bike_Id, User_Type'
+    string_input: A comma separated list of values in the form: 'Trip_Id, Trip__Duration,
+    Start_Station_Id, Start_Time, Start_Station_Name, End_Station_Id, End_Time, 
+    End_Station_Name, Bike_Id, User_Type'
 
-    Example string_input: '10000083,720,7239,2020-03-10 13:28:00,Bloor St W / Manning Ave - SMART,7160,
-    10/03/2020 13:40,King St W / Tecumseth St,5563,Annual Member'
+    Example string_input: '10000083,720,7239,2020-03-10 13:28:00,
+    Bloor St W / Manning Ave - SMART,7160, 10/03/2020 13:40,
+    King St W / Tecumseth St,5563,Annual Member'
 
     Returns:
-    A dict mapping BigQuery column names as keys to the corresponding value parsed from string_input.
+    A dict mapping BigQuery column names as keys to the corresponding value
+    parsed from string_input.
 
     Example output:
         {'Trip_Id':'10000083',
