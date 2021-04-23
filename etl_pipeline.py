@@ -130,7 +130,7 @@ def run(argv=None):
         required=False,
         help='Input file to read. This can be a local file or '
         'a file in a Google Storage Bucket.',
-        default='gs://toronto-bikeshare-data-2020/*.csv')
+        default='gs://my-bucket-name/*.csv')
 
     # This defaults to the bucket in your BigQuery project. You'll have
     # to create the bucket yourself using this command:
@@ -139,7 +139,7 @@ def run(argv=None):
                         dest='output',
                         required=False,
                         help='Output BQ table to write results to.',
-                        default='torontobikeshare.biketrips2020')
+                        default='mydataset.biketrips2020')
 
     # Parse arguments from the command line.
     known_args, pipeline_args = parser.parse_known_args(argv)
